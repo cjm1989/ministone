@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 원래 여기에서 db들어가는 정보 적어줬지만 이미 작업하고 나왔기 때문에 별칭만 주면 됨 -->
+		<typeAliases>
+		 	<typeAlias type="kr.co.ministone.dto.cardDTO" alias="dto"/>
+		  		<typeAlias type="kr.co.ministone.dto.UserDTO" alias="udto"/>
+  		<typeAlias type="kr.co.ministone.dto.UserCardDTO" alias="cardDto"/>
+		
+		</typeAliases>
+	
+		<!-- <mappers>
+	
+			<mapper resource="kr/co/resource/Mapper.xml"/>
+		</mappers>  -->
+
+
+
+
+</configuration>  

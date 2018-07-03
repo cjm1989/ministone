@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		<context:component-scan base-package="kr.co.ministone.*"></context:component-scan>
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		
+		
+<!-- <bean id="dao" class="kr.co.ministone.dao.MYSQLDao">
+		<property name="ss" ref="sqlSessionTemplate" />
+	
+</bean> -->
+
+	<!-- ${driver}이런 정보들이 어디에 있는 지 spring framework가 모르니까 알려주기 -->
+
+
+
+	<!-- db 연결 정보 넣어놓은 bean 객체 생성 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/soldesk" />
+		<property name="username" value="scott" />
+		<property name="password" value="tiger" />
+</bean>
+	
+	<!-- SqlSeesionFactroy -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+		<!-- db 연결정보 -->
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/Config.xml" />
+		<!-- 나머지 sql문 설정 정보 넣기 mapper들 넣기-->
+		<property name="mapperLocations" value="classpath:/Mapper.xml" />
+
+	
+</bean>
+
+	<!-- SqlSessionTemplate 객체 (jdbc대신해서 사용했었음)-->
+		<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+				<!-- sqlSessionTemplate은 생성자가 필요함 -->
+				
+				<!-- 생성자 역할 하는 아이 -->
+				<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
+	
+	
+</bean>		
+		<context:component-scan base-package="kr.co.ministone.dao" />
+		
+</beans>
